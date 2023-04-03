@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Farma Plus</string>
+    <string name="login">Login</string>
+    <string name="compra_string">Make a purchase</string>
+    <string name="historial_string">Shopping history</string>
+    <string name="logout">Logout</string>
+</resources>

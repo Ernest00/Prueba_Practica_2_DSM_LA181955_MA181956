@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Farma Plus</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="compra_string">Realizar una compra</string>
+    <string name="historial_string">Historial de compras</string>
+    <string name="logout">Cerrar Sesión</string>
+</resources>

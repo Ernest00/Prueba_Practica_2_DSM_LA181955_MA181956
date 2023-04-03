@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "494273497413",
+    "project_id": "farmaplus-2c78b",
+    "storage_bucket": "farmaplus-2c78b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494273497413:android:405c125757a1298fe1562c",
+        "android_client_info": {
+          "package_name": "org.example.pruebapractica2dsm_la181955_ma181956"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494273497413-c95np2sq241k9r1dohbajmv03vr1kofq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrWPekgsvbOvXIceFtLu9ydir8OX12gVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494273497413-c95np2sq241k9r1dohbajmv03vr1kofq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
