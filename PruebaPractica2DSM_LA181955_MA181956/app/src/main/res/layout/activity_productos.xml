@@ -11,7 +11,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_agregar"
+        android:id="@+id/btnCarrito"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:clickable="true"

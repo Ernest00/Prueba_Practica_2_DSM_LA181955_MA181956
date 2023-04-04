@@ -43,36 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="#000"
-            android:text="@string/telefono_pago"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/txtTelefonoPago"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
-            android:text="@string/correo_pago"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/txtCorreoPago"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
             android:text="@string/tarjeta_pago"
             android:textSize="18sp" />
 

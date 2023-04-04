@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     fun Menu(){
-        val intent = Intent( this, MainActivity::class.java)
+        val intent = Intent( this, ProductosActivity::class.java)
         startActivity(intent)
         finish()
     }
