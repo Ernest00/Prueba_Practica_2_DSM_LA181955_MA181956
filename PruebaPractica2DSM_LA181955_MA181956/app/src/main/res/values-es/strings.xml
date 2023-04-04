@@ -5,4 +5,14 @@
     <string name="compra_string">Realizar una compra</string>
     <string name="historial_string">Historial de compras</string>
     <string name="logout">Cerrar Sesión</string>
+    <string name="titulo_pago">Formulario de pago</string>
+    <string name="nombre_pago">Nombre completo:</string>
+    <string name="correo_pago">Correo electrónico:</string>
+    <string name="telefono_pago">Teléfono:</string>
+    <string name="tarjeta_pago">Número de tarjeta:</string>
+    <string name="vencimiento_tarjeta_pago">Vencimiento:</string>
+    <string name="cvv_pago">CVV:</string>
+    <string name="direccion_pago">Dirección:</string>
+    <string name="hint_vencimiento_tarjeta">mm/yyyy</string>
+    <string name="btn_pago">Pagar</string>
 </resources>
