@@ -29,6 +29,7 @@ class ProductosActivity : AppCompatActivity() {
         btnCarrito = findViewById<FloatingActionButton>(R.id.btnCarrito)
         btnCarrito?.setOnClickListener {
             val intent = Intent(this, PagoActivity::class.java)
+            intent.putExtra("listaMedicamentos", listaCompraMedicamentos)
             startActivity(intent)
         }
     }
@@ -64,5 +65,6 @@ class ProductosActivity : AppCompatActivity() {
         var refCarrito: DatabaseReference = database.getReference("carrito")
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid.toString()
+        var listaCompraMedicamentos = ArrayList<Carrito>()
     }
 }

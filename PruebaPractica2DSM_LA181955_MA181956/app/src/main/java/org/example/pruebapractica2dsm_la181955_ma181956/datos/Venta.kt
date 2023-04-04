@@ -7,6 +7,7 @@ class Venta {
 
     var id: String = ""
     var idcliente: String = ""
+    var cliente: String = ""
     var medicamentos: ArrayList<Carrito> = ArrayList<Carrito>()
     var tarjeta: String = ""
     var vencimientotarjeta: String = ""
@@ -21,6 +22,7 @@ class Venta {
     constructor(
         id: String,
         idcliente: String,
+        cliente: String,
         medicamentos: ArrayList<Carrito>,
         tarjeta: String,
         vencimientotarjeta: String,
@@ -30,6 +32,7 @@ class Venta {
     ) {
         this.id = id
         this.idcliente = idcliente
+        this.cliente = cliente
         this.medicamentos = medicamentos
         this.tarjeta = tarjeta
         this.vencimientotarjeta = vencimientotarjeta
@@ -42,6 +45,7 @@ class Venta {
         return mapOf(
             "id" to id,
             "idcliente" to idcliente,
+            "cliente" to cliente,
             "medicamentos" to medicamentos,
             "tarjeta" to tarjeta,
             "vencimientotarjeta" to vencimientotarjeta,

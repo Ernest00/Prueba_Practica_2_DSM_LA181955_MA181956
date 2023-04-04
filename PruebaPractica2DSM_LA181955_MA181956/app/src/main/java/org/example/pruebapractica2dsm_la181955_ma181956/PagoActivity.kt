@@ -14,11 +14,11 @@ import kotlin.collections.ArrayList
 
 class PagoActivity : AppCompatActivity() {
     var btnPago: Button? = null
-    var txtCliente : EditText? = null
-    var txtTarjeta : EditText? = null
-    var txtVencimiento : EditText? = null
-    var txtCvv : EditText? = null
-    var txtDireccion : EditText? = null
+    private lateinit var txtCliente : EditText
+    private lateinit var txtTarjeta : EditText
+    private lateinit var txtVencimiento : EditText
+    private lateinit var txtCvv : EditText
+    private lateinit var txtDireccion : EditText
     private lateinit var database: DatabaseReference
     var queryCarrito: com.google.firebase.database.Query = ProductosActivity.refCarrito.equalTo(uid)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,11 +42,6 @@ class PagoActivity : AppCompatActivity() {
         txtCvv = findViewById<EditText>(R.id.txtCvvTarjetaPago)
         txtDireccion = findViewById<EditText>(R.id.txtDireccionPago)
 
-        var cliente: String = txtCliente?.text.toString()
-        var tarjeta: String = txtTarjeta?.text.toString()
-        var vencimientoTarjeta: String = txtVencimiento?.text.toString()
-        var cvv: String = txtCvv?.text.toString()
-        var direccion: String = txtDireccion?.text.toString()
         var id = System.currentTimeMillis().toString()
         var fecha: String = obtenerFechaHoraActual()
         var listaCompra: ArrayList<Carrito> = ArrayList<Carrito>()
@@ -70,22 +65,24 @@ class PagoActivity : AppCompatActivity() {
             var venta = Venta(
                 id,
                 uid,
+                txtCliente.text.toString(),
                 listaCompra,
-                tarjeta,
-                vencimientoTarjeta,
-                cvv,
-                direccion,
+                txtTarjeta.text.toString(),
+                txtVencimiento.text.toString(),
+                txtCvv.text.toString(),
+                txtDireccion.text.toString(),
                 fecha
             )
 
             database = FirebaseDatabase.getInstance().getReference("ventas")
             database.child(id).child("uid").setValue(uid)
-            database.child(id).child("medicamentos").setValue(uid)
+            database.child(id).child("cliente").setValue(venta.cliente)
             database.child(id).child("tarjeta").setValue(venta.tarjeta)
             database.child(id).child("vencimientotarjeta").setValue(venta.vencimientotarjeta)
             database.child(id).child("cvv").setValue(venta.cvv)
             database.child(id).child("direccion").setValue(venta.direccion)
             database.child(id).child("fecha").setValue(fecha)
+
         }
     }
 
