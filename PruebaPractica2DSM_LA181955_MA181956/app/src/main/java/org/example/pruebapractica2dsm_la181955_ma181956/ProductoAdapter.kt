@@ -52,8 +52,7 @@ class ProductoAdapter(private val context: Activity, var productos: List<Product
                 var precio: Float = tvPrecio.text.toString().replace("Precio: $", "" ).toFloat()
                 var compra = Carrito(uid, medicamento, cantidad, precio)
                 tvCantidad.setText("")
-                ProductosActivity.refCarrito.child(compra.uid).child("uid").setValue(compra.uid)
-                ProductosActivity.refCarrito.child(compra.uid).child(compra.medicamento).setValue("${compra.medicamento}|${compra.cantidad}|${compra.precio}")
+                ProductosActivity.refCarrito.child(compra.uid).child(compra.medicamento).setValue("${compra.cantidad}|${compra.precio}")
             }
         }
 

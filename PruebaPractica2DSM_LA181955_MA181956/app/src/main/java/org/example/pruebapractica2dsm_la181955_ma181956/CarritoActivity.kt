@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Carrito
@@ -19,9 +20,10 @@ class CarritoActivity : AppCompatActivity() {
     val user = FirebaseAuth.getInstance().currentUser
     val uid = user?.uid.toString()
     var consultaOrdenada: com.google.firebase.database.Query = refCarrito.child(uid)
-    var consultaMedicamentos: com.google.firebase.database.Query = refMedicamentos
+    private lateinit var tvTotalVenta : TextView
     var ordenes: MutableList<Ordenes>? = null
     var listaCarrito: ListView? = null
+    var totalVenta: Float = 0F
     private lateinit var btnPasoPago: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +33,19 @@ class CarritoActivity : AppCompatActivity() {
         btnPasoPago = findViewById<Button>(R.id.btnPasoPago)
         btnPasoPago.setOnClickListener {
             val intent = Intent(this, PagoActivity::class.java)
+            intent.putExtra("totalVenta", totalVenta.toString())
             startActivity(intent)
         }
 
     }
 
+    private fun calcularTotalVenta(listaCompra: ArrayList<Ordenes>) : Float {
+        var total: Float = 0F
+        for (elemento in listaCompra) {
+            total += elemento.cantidad.toString().toInt() * elemento.precio.toString().toFloat()
+        }
+        return total
+    }
 
     private fun cargarListaCarrito() {
         listaCarrito = findViewById<ListView>(R.id.ListaCarrito)
@@ -87,6 +97,12 @@ class CarritoActivity : AppCompatActivity() {
                     ordenes as ArrayList<Ordenes>
                 )
                 listaCarrito!!.adapter = adapter
+
+                //Se calcula el total de la venta
+                totalVenta = calcularTotalVenta(ordenes as ArrayList<Ordenes>)
+                totalVenta = (totalVenta * 1.13).toFloat()
+                tvTotalVenta = findViewById<TextView>(R.id.tvTotalVenta)
+                tvTotalVenta.setText("Total a pagar: $${totalVenta.toString()}")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

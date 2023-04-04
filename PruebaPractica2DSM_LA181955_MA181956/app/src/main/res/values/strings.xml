@@ -16,4 +16,6 @@
     <string name="btn_pago">Pay</string>
     <string name="btn_anadir">Add</string>
     <string name="checkout">Go to payment</string>
+    <string name="lista_compra">My Order</string>
+    <string name="historial">Shopping history</string>
 </resources>

@@ -8,12 +8,13 @@ class Venta {
     var id: String = ""
     var idcliente: String = ""
     var cliente: String = ""
-    var medicamentos: ArrayList<Carrito> = ArrayList<Carrito>()
+    var medicamentos: MutableList<Ordenes> = ArrayList<Ordenes>()
     var tarjeta: String = ""
     var vencimientotarjeta: String = ""
     var cvv: String = ""
     var direccion: String = ""
     var fecha: String = ""
+    var total: Float = 0F
     var key: String? = null
     var per: MutableMap<String, Boolean> = HashMap()
 
@@ -23,12 +24,13 @@ class Venta {
         id: String,
         idcliente: String,
         cliente: String,
-        medicamentos: ArrayList<Carrito>,
+        medicamentos: ArrayList<Ordenes>,
         tarjeta: String,
         vencimientotarjeta: String,
         cvv: String,
         direccion: String,
-        fecha: String
+        fecha: String,
+        total: Float
     ) {
         this.id = id
         this.idcliente = idcliente
@@ -39,6 +41,7 @@ class Venta {
         this.cvv = cvv
         this.direccion = direccion
         this.fecha = fecha
+        this.total = total
     }
 
     fun toMap(): Map<String, Any?> {
@@ -52,6 +55,7 @@ class Venta {
             "cvv" to cvv,
             "direccion" to direccion,
             "fecha" to fecha,
+            "total" to total,
             "key" to key,
             "per" to per
         )

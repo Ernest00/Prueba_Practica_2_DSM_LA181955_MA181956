@@ -125,6 +125,14 @@
             android:textColorHighlight="#000"
             android:textColorHint="#000"
             android:textColorLink="#000" />
+        <TextView
+            android:id="@+id/tvTotalVenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:text="Total a pagar: $10.00"/>
 
         <Button
             android:id="@+id/btnPagar"

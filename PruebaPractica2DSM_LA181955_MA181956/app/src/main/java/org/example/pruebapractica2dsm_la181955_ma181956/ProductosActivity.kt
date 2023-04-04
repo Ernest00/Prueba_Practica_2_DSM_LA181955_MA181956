@@ -12,7 +12,6 @@ import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import org.example.pruebapractica2dsm_la181955_ma181956.datos.Carrito
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Producto
 
 class ProductosActivity : AppCompatActivity() {
