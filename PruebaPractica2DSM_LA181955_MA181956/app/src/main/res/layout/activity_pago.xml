@@ -20,7 +20,8 @@
             android:background="@color/pink_700"
             android:text="@string/titulo_pago"
             android:textAlignment="center"
-            android:textColor="#000"
+            android:backgroundTint="@color/pink_200"
+            android:textColor="#fff"
             android:textSize="24sp" />
 
         <TextView
@@ -36,7 +37,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:shadowColor="#000"
+            android:textColor="#000"
+            android:textColorHighlight="#000"
+            android:textColorHint="#000"
+            android:textColorLink="#000" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,7 +57,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:shadowColor="#000"
+            android:textColor="#000"
+            android:textColorHighlight="#000"
+            android:textColorHint="#000"
+            android:textColorLink="#000" />
 
         <TextView
             android:layout_width="match_parent"
@@ -67,7 +78,12 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/hint_vencimiento_tarjeta"
-            android:inputType="text" />
+            android:inputType="text"
+            android:shadowColor="#000"
+            android:textColor="#000"
+            android:textColorHighlight="#000"
+            android:textColorHint="#000"
+            android:textColorLink="#000" />
 
         <TextView
             android:layout_width="match_parent"
@@ -82,7 +98,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:shadowColor="#000"
+            android:textColor="#000"
+            android:textColorHighlight="#000"
+            android:textColorHint="#000"
+            android:textColorLink="#000" />
 
         <TextView
             android:layout_width="match_parent"
@@ -98,15 +119,20 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:shadowColor="#000"
+            android:textColor="#000"
+            android:textColorHighlight="#000"
+            android:textColorHint="#000"
+            android:textColorLink="#000" />
 
         <Button
             android:id="@+id/btnPagar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/pink_200"
             android:text="@string/btn_pago"
-            android:textColor="#000" />
+            android:textColor="#fff" />
     </LinearLayout>
 </ScrollView>

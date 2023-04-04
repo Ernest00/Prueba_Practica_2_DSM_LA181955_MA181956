@@ -14,4 +14,5 @@
     <string name="direccion_pago">Address:</string>
     <string name="hint_vencimiento_tarjeta">mm/yyyy</string>
     <string name="btn_pago">Pay</string>
+    <string name="btn_anadir">Add</string>
 </resources>

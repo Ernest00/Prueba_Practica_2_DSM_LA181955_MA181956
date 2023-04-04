@@ -52,10 +52,10 @@ class LoginActivity : AppCompatActivity() {
                             Log.e(TAG, "User registration failed", task.exception)
                         }
                     }
+            } else {
+                Toast.makeText(this, "Ingrese sus credenciales, por favor", Toast.LENGTH_LONG).show()
             }
-
         }
-
 
     }
 

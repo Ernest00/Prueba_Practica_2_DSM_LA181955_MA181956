@@ -14,10 +14,12 @@
         android:id="@+id/btnCarrito"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_gravity="bottom|end"
-        app:srcCompat="@drawable/baseline_shopping_cart_24"
-        app:fabSize="normal" />
+        android:backgroundTint="@color/pink_200"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:rippleColor="#fff"
+        app:srcCompat="@drawable/baseline_shopping_cart_24" />
 
     <ListView
         android:id="@+id/ListaMedicamentos"

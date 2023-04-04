@@ -2,8 +2,11 @@ package org.example.pruebapractica2dsm_la181955_ma181956
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.content.ContentValues.TAG
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.example.pruebapractica2dsm_la181955_ma181956.ProductosActivity.Companion.database
@@ -20,7 +23,7 @@ class PagoActivity : AppCompatActivity() {
     private lateinit var txtCvv : EditText
     private lateinit var txtDireccion : EditText
     private lateinit var database: DatabaseReference
-    var queryCarrito: com.google.firebase.database.Query = ProductosActivity.refCarrito.equalTo(uid)
+    var queryCarrito: com.google.firebase.database.Query = refCarrito.orderByChild("uid").equalTo(uid)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pago)
@@ -34,6 +37,15 @@ class PagoActivity : AppCompatActivity() {
         return "${fechaActual} - ${horaActual}"
     }
 
+    fun validarCvv(cadena: String) : Boolean {
+        val patron = Regex("^[0-9]{3}$")
+        return patron.matches(cadena)
+    }
+
+    fun validarVencimientoTarjeta(cadena: String) : Boolean {
+        val patron = Regex("^[0-9]{2}/[0-9]{4}$")
+        return patron.matches(cadena)
+    }
     fun realizarPago() {
         btnPago = findViewById<Button>(R.id.btnPagar)
         txtCliente = findViewById<EditText>(R.id.txtNombrePago)
@@ -45,44 +57,81 @@ class PagoActivity : AppCompatActivity() {
         var id = System.currentTimeMillis().toString()
         var fecha: String = obtenerFechaHoraActual()
         var listaCompra: ArrayList<Carrito> = ArrayList<Carrito>()
+        val tipoDeDato = object : GenericTypeIndicator<Map<String, String>>() {}
 
-        queryCarrito.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                listaCompra!!.removeAll(listaCompra!!)
-                for (dato in snapshot.getChildren()){
-                    val compra: Carrito? = dato.getValue(Carrito::class.java)
-                    compra?.key(dato.key)
-                    if(compra != null) {
-                        listaCompra!!.add(compra)
+        /*queryCarrito.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Lógica para manejar los datos recibidos
+                val mapa = dataSnapshot.getValue(tipoDeDato)
+                if (mapa != null) {
+                    for ((clave, valor) in mapa) {
+                        Log.d(TAG,"$clave: $valor")
                     }
                 }
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {}
-        })
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Manejo de errores
+            }
+        })*/
 
         btnPago?.setOnClickListener {
-            var venta = Venta(
-                id,
-                uid,
-                txtCliente.text.toString(),
-                listaCompra,
-                txtTarjeta.text.toString(),
-                txtVencimiento.text.toString(),
-                txtCvv.text.toString(),
-                txtDireccion.text.toString(),
-                fecha
-            )
+            var errores: Int = 0
+            if (txtCliente.text.toString().isEmpty()) {
+                txtCliente.setError("Ingrese su nombre completo.")
+                errores += 1
+            }
 
-            database = FirebaseDatabase.getInstance().getReference("ventas")
-            database.child(id).child("uid").setValue(uid)
-            database.child(id).child("cliente").setValue(venta.cliente)
-            database.child(id).child("tarjeta").setValue(venta.tarjeta)
-            database.child(id).child("vencimientotarjeta").setValue(venta.vencimientotarjeta)
-            database.child(id).child("cvv").setValue(venta.cvv)
-            database.child(id).child("direccion").setValue(venta.direccion)
-            database.child(id).child("fecha").setValue(fecha)
+            if (txtTarjeta.text.toString().isEmpty()) {
+                txtTarjeta.setError("Ingrese su número de tarjeta de crédito.")
+                errores += 1
+            }
 
+            if (txtVencimiento.text.toString().isEmpty()) {
+                txtVencimiento.setError("Ingrese la fecha de vencimiento de su tarjeta.")
+                errores += 1
+            } else if(!validarVencimientoTarjeta(txtVencimiento.text.toString())) {
+                txtVencimiento.setError("Digite el mes y año de vencimiento, con el formato (mm/yyyy).")
+                errores += 1
+            }
+
+            if (txtCvv.text.toString().isEmpty()) {
+                txtCvv.setError("Ingrese el CVV de su tarjeta.")
+                errores += 1
+            } else if(!validarCvv(txtCvv.text.toString())) {
+                txtCvv.setError("El número de CVV se compone por un número de 3 dígitos")
+                errores += 1
+            }
+
+            if (txtDireccion.text.toString().isEmpty()) {
+                txtDireccion.setError("Ingrese la dirección de su residencia.")
+                errores += 1
+            }
+
+            if (errores == 0) {
+                var venta = Venta(
+                    id,
+                    uid,
+                    txtCliente.text.toString(),
+                    listaCompra,
+                    txtTarjeta.text.toString(),
+                    txtVencimiento.text.toString(),
+                    txtCvv.text.toString(),
+                    txtDireccion.text.toString(),
+                    fecha
+                )
+
+                //Log.d(TAG, "LIstado de productos: ${listaCompra.get(0)}")
+                database = FirebaseDatabase.getInstance().getReference("ventas")
+                database.child(id).child("uid").setValue(uid)
+                database.child(id).child("cliente").setValue(venta.cliente)
+                database.child(id).child("tarjeta").setValue(venta.tarjeta)
+                database.child(id).child("vencimientotarjeta").setValue(venta.vencimientotarjeta)
+                database.child(id).child("cvv").setValue(venta.cvv)
+                database.child(id).child("direccion").setValue(venta.direccion)
+                database.child(id).child("fecha").setValue(fecha)
+                Toast.makeText(this, "Su compra ha sido realizada exitosamente", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

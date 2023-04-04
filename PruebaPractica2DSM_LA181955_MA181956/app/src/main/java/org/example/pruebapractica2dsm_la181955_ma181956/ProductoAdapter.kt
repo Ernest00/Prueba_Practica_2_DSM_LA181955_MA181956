@@ -43,14 +43,18 @@ class ProductoAdapter(private val context: Activity, var productos: List<Product
         Picasso.get().load(productos[position].imagen).into(ivImagen)
 
         btnAnadir.setOnClickListener {
-            var uid: String = ProductosActivity.uid
-            var medicamento : String = tvNombre.text.toString().replace("Nombre: ", "")
-            var cantidad: Int = tvCantidad.text.toString().toInt()
-            var precio: Float = tvPrecio.text.toString().replace("Precio: $", "" ).toFloat()
-            var compra = Carrito(uid, medicamento, cantidad, precio)
-            tvCantidad.setText("")
-            ProductosActivity.listaCompraMedicamentos.add(compra)
-            ProductosActivity.refCarrito.child(compra.uid).child(compra.medicamento).setValue("${compra.cantidad}|${compra.precio}")
+            if (tvCantidad.text.toString().isEmpty()) {
+                tvCantidad.setError("Ingrese la cantidad a comprar")
+            } else {
+                var cantidad: Int = tvCantidad.text.toString().toInt()
+                var uid: String = ProductosActivity.uid
+                var medicamento : String = tvNombre.text.toString().replace("Nombre: ", "")
+                var precio: Float = tvPrecio.text.toString().replace("Precio: $", "" ).toFloat()
+                var compra = Carrito(uid, medicamento, cantidad, precio)
+                tvCantidad.setText("")
+                ProductosActivity.refCarrito.child(compra.uid).child("uid").setValue(compra.uid)
+                ProductosActivity.refCarrito.child(compra.uid).child(compra.medicamento).setValue("${compra.medicamento}|${compra.cantidad}|${compra.precio}")
+            }
         }
 
         return rowview
