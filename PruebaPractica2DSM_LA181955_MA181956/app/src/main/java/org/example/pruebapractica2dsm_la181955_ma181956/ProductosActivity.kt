@@ -28,7 +28,7 @@ class ProductosActivity : AppCompatActivity() {
 
         btnCarrito = findViewById<FloatingActionButton>(R.id.btnCarrito)
         btnCarrito?.setOnClickListener {
-            val intent = Intent(this, PagoActivity::class.java)
+            val intent = Intent(this, CarritoActivity::class.java)
             startActivity(intent)
         }
     }
