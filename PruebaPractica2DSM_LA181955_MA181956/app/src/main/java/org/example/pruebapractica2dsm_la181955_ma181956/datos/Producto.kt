@@ -6,7 +6,7 @@ class Producto {
     }
 
     var nombre: String? = null
-    var precio: String? = null
+    var precio: Float? = 0F
     var indicaciones: String? = null
     var contraindicaciones: String? = null
     var imagen: String? = null
