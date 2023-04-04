@@ -16,4 +16,5 @@
     <string name="hint_vencimiento_tarjeta">mm/yyyy</string>
     <string name="btn_pago">Pagar</string>
     <string name="btn_anadir">Añadir</string>
+    <string name="checkout">Pagar</string>
 </resources>

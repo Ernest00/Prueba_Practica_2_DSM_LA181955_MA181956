@@ -32,9 +32,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-    <ImageView
-        android:id="@+id/imagenProductoListaCompra"
+    <TextView
+        android:id="@+id/tvCantidad"
+        android:background="#ffffff"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:text="Cantidad: 30"
+        android:layout_gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars"/>
+        android:layout_height="wrap_content"/>
 </LinearLayout>
