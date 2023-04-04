@@ -1,9 +1,13 @@
 package org.example.pruebapractica2dsm_la181955_ma181956
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.ListView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -14,99 +18,87 @@ import org.example.pruebapractica2dsm_la181955_ma181956.datos.Producto
 class CarritoActivity : AppCompatActivity() {
     val user = FirebaseAuth.getInstance().currentUser
     val uid = user?.uid.toString()
-    var consultaOrdenada: com.google.firebase.database.Query = refCarrito
+    var consultaOrdenada: com.google.firebase.database.Query = refCarrito.child(uid)
     var consultaMedicamentos: com.google.firebase.database.Query = refMedicamentos
     var ordenes: MutableList<Ordenes>? = null
     var listaCarrito: ListView? = null
-    var medicamentos: MutableList<String>? = null
-
+    private lateinit var  btnPasoPago: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
-        cargarListaProductos()
         cargarListaCarrito()
+
+        btnPasoPago = findViewById<Button>(R.id.btnPasoPago)
+        btnPasoPago.setOnClickListener {
+            val intent = Intent(this, PagoActivity::class.java)
+            startActivity(intent)
+        }
+
 
         Log.d(TAG, "EL UID ES: ${uid}")
     }
 
-    private fun cargarListaProductos() {
-        medicamentos = ArrayList<String>()
-        consultaMedicamentos.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                medicamentos!!.removeAll(medicamentos!!)
-                for (data in snapshot.getChildren()) {
-                    //Log.d(TAG, "MEDICAMENTO " + data.toString())
-                    // Log.d(TAG, "MEDICAMENTO2 " + data.child("nombre").getValue().toString())
-                    // var sm :String = snapshot.child("nombre").getValue().toString()
-                    (medicamentos as ArrayList<String>).add(
-                        data.child("nombre").getValue().toString()
-                    )
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.e(
-                    TAG,
-                    "Error al obtener los valores del objeto",
-                    databaseError.toException()
-                )
-            }
-        })
-    }
 
     private fun cargarListaCarrito() {
         listaCarrito = findViewById<ListView>(R.id.ListaCarrito)
         ordenes = ArrayList<Ordenes>()
 
-
         // Cambiarlo refProductos a consultaOrdenada para ordenar lista
         consultaOrdenada.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 ordenes!!.removeAll(ordenes!!)
-                for (dato in dataSnapshot.getChildren()) {
+                Log.d(
+                    TAG,
+                    "Consultando la bdd se obtuvo\n-> ${
+                        dataSnapshot.getChildren().toList().toString()
+                    }"
+                )
+
+                for (dato in dataSnapshot.getChildren().toList()) {
                     Log.d(TAG, "UID- ${uid} - DATTA? " + dato.toString())
                     Log.d(TAG, "Key1- " + dato.key.toString())
                     Log.d(TAG, "Value1- " + dato.value.toString())
-                    for (item in medicamentos!!) {
-                        var precioCantidad =
-                            dataSnapshot.child(uid).child(item).getValue().toString()
-                        Log.d(
-                            TAG,
-                            "Valor de ${item}- " + precioCantidad
-                        )
 
-                        val orden: Ordenes? = dato.getValue(Ordenes::class.java)
-                        orden?.key(uid)
-
-                        var cantidad =""
-                        var precio=""
-                        if(precioCantidad!=null){
-                            val parts =
-                                precioCantidad.split("|") // divide la cadena en dos partes usando el carácter |
-                            Log.d(TAG, "MX - " + parts[0].toString())
-
-                            cantidad= parts[0].toString() // obtiene el primer valor
-                            Log.d(TAG, "MX1 - " + parts[1].toString())
-                            precio = parts[1].toString() // obtiene el segundo valor
-                        }
-
-                        orden?.medicamento = item
-                        orden?.precio = precio.toString()
-                        orden?.cantidad = cantidad.toString()
-
-                        Log.d(
-                            TAG,
-                            "Valores ${orden?.medicamento}- " + precioCantidad
-                        )
-
-                        if (orden != null) {
-                            ordenes!!.add(orden)
-                        }
+                    Log.d(
+                        TAG,
+                        "SIN FOR \nNombre-> ${dato.key.toString()} -- Prec: ${dato.value.toString()}"
+                    )
 
 
+                    var precioCantidad = "0"
+                    var cantidad = "0"
+                    var precio = "0"
+
+                    if (dato.value.toString() != null) {
+                        precioCantidad = dato.value.toString()
+
+                        val parts =
+                            precioCantidad.split("|") // divide la cadena en dos partes usando el carácter |
+                        Log.d(TAG, "Parte1 - " + parts[0].toString())
+
+                        cantidad = parts[0].toString() // obtiene el primer valor
+                        Log.d(TAG, "Parte 2 - " + parts[1].toString())
+                        precio = parts[1].toString() // obtiene el segundo valor
+                    }
+                    val orden : Ordenes? = dataSnapshot.getValue(Ordenes::class.java)
+
+                    Log.d(TAG, "Ya casi")
+                    orden?.key(uid)
+                    orden?.medicamento = dato.key.toString()
+                    orden?.precio = precio
+                    orden?.cantidad = cantidad
+                    Log.d(TAG, "Casi casi casisii")
+
+                    Log.d(TAG, "MIRA ESTA IK ${orden}")
+                    if (orden != null) {
+                        Log.d(TAG, "Se agregaron xd")
+                        ordenes!!.add(orden)
                     }
 
+
                 }
+
+
                 val adapter = CarritoAdapter(
                     this@CarritoActivity,
                     ordenes as ArrayList<Ordenes>
