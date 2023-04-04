@@ -22,7 +22,7 @@ class CarritoActivity : AppCompatActivity() {
     var consultaMedicamentos: com.google.firebase.database.Query = refMedicamentos
     var ordenes: MutableList<Ordenes>? = null
     var listaCarrito: ListView? = null
-    private lateinit var  btnPasoPago: Button
+    private lateinit var btnPasoPago: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
@@ -34,8 +34,6 @@ class CarritoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        Log.d(TAG, "EL UID ES: ${uid}")
     }
 
 
@@ -55,15 +53,6 @@ class CarritoActivity : AppCompatActivity() {
                 )
 
                 for (dato in dataSnapshot.getChildren().toList()) {
-                    Log.d(TAG, "UID- ${uid} - DATTA? " + dato.toString())
-                    Log.d(TAG, "Key1- " + dato.key.toString())
-                    Log.d(TAG, "Value1- " + dato.value.toString())
-
-                    Log.d(
-                        TAG,
-                        "SIN FOR \nNombre-> ${dato.key.toString()} -- Prec: ${dato.value.toString()}"
-                    )
-
 
                     var precioCantidad = "0"
                     var cantidad = "0"
@@ -74,24 +63,18 @@ class CarritoActivity : AppCompatActivity() {
 
                         val parts =
                             precioCantidad.split("|") // divide la cadena en dos partes usando el carácter |
-                        Log.d(TAG, "Parte1 - " + parts[0].toString())
-
                         cantidad = parts[0].toString() // obtiene el primer valor
-                        Log.d(TAG, "Parte 2 - " + parts[1].toString())
                         precio = parts[1].toString() // obtiene el segundo valor
                     }
-                    val orden : Ordenes? = dataSnapshot.getValue(Ordenes::class.java)
+                    val orden: Ordenes? = dataSnapshot.getValue(Ordenes::class.java)
 
-                    Log.d(TAG, "Ya casi")
+
                     orden?.key(uid)
                     orden?.medicamento = dato.key.toString()
                     orden?.precio = precio
                     orden?.cantidad = cantidad
-                    Log.d(TAG, "Casi casi casisii")
 
-                    Log.d(TAG, "MIRA ESTA IK ${orden}")
                     if (orden != null) {
-                        Log.d(TAG, "Se agregaron xd")
                         ordenes!!.add(orden)
                     }
 
