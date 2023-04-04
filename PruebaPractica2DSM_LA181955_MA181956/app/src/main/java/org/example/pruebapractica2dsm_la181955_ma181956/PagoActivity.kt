@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -144,7 +145,6 @@ class PagoActivity : AppCompatActivity() {
                     id,
                     uid,
                     txtCliente.text.toString(),
-                    listaCompra as ArrayList<Ordenes>,
                     txtTarjeta.text.toString(),
                     txtVencimiento.text.toString(),
                     txtCvv.text.toString(),
@@ -155,7 +155,8 @@ class PagoActivity : AppCompatActivity() {
 
                 // Insertando datos en la tabla ventas de la base de datos
                 database = FirebaseDatabase.getInstance().getReference("ventas")
-                database.child(venta.id).child("uid").setValue(venta.idcliente)
+                database.child(venta.id).child("id").setValue(venta.id)
+                database.child(venta.id).child("idcliente").setValue(venta.idcliente)
                 database.child(venta.id).child("cliente").setValue(venta.cliente)
                 database.child(venta.id).child("tarjeta").setValue(venta.tarjeta)
                 database.child(venta.id).child("vencimientotarjeta").setValue(venta.vencimientotarjeta)
@@ -166,10 +167,13 @@ class PagoActivity : AppCompatActivity() {
 
                 // Insertando datos en la tabla detallesventas
                 database = FirebaseDatabase.getInstance().getReference("detallesventas")
-                for (dato in venta.medicamentos) {
+                for (dato in listaCompra as ArrayList<Ordenes>) {
                     database.child(venta.id).child(dato.medicamento).setValue("${dato.cantidad}|${dato.precio}")
                 }
                 Toast.makeText(this, "Su compra ha sido realizada exitosamente", Toast.LENGTH_SHORT).show()
+                // Se muestra la actividad del historial de compras
+                val intent = Intent(this, HistorialActivity::class.java)
+                startActivity(intent)
             }
         }
     }

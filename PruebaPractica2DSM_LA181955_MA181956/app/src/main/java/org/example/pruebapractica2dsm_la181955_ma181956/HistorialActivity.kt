@@ -9,13 +9,14 @@ import org.example.pruebapractica2dsm_la181955_ma181956.datos.Producto
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Venta
 
 class HistorialActivity : AppCompatActivity() {
-    var consultaVentas: com.google.firebase.database.Query = refVentas.orderByChild("uid")
+    var consultaVentas: com.google.firebase.database.Query = refVentas.orderByChild("idcliente").equalTo(uid)
     var historialCompras: MutableList<Venta>? = null
     var listaHistorial: ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historial)
+        cargarHistorialCompras()
     }
 
     private fun cargarHistorialCompras() {

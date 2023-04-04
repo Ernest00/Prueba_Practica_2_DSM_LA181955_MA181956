@@ -8,7 +8,6 @@ class Venta {
     var id: String = ""
     var idcliente: String = ""
     var cliente: String = ""
-    var medicamentos: MutableList<Ordenes> = ArrayList<Ordenes>()
     var tarjeta: String = ""
     var vencimientotarjeta: String = ""
     var cvv: String = ""
@@ -24,7 +23,6 @@ class Venta {
         id: String,
         idcliente: String,
         cliente: String,
-        medicamentos: ArrayList<Ordenes>,
         tarjeta: String,
         vencimientotarjeta: String,
         cvv: String,
@@ -35,7 +33,6 @@ class Venta {
         this.id = id
         this.idcliente = idcliente
         this.cliente = cliente
-        this.medicamentos = medicamentos
         this.tarjeta = tarjeta
         this.vencimientotarjeta = vencimientotarjeta
         this.cvv = cvv
@@ -49,7 +46,6 @@ class Venta {
             "id" to id,
             "idcliente" to idcliente,
             "cliente" to cliente,
-            "medicamentos" to medicamentos,
             "tarjeta" to tarjeta,
             "vencimientotarjeta" to vencimientotarjeta,
             "cvv" to cvv,
