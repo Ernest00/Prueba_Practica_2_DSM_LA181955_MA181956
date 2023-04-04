@@ -19,14 +19,15 @@ class ProductosActivity : AppCompatActivity() {
     var consultaOrdenada: com.google.firebase.database.Query = refMedicamentos.orderByChild("nombre")
     var medicamentos: MutableList<Producto>? = null
     var listaMedicamentos: ListView? = null
-    val btnCarrito : FloatingActionButton = findViewById<FloatingActionButton>(R.id.btnCarrito)
+    var btnCarrito : FloatingActionButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_productos)
         cargarListaMedicamentos()
 
-        btnCarrito.setOnClickListener {
+        btnCarrito = findViewById<FloatingActionButton>(R.id.btnCarrito)
+        btnCarrito?.setOnClickListener {
             val intent = Intent(this, PagoActivity::class.java)
             startActivity(intent)
         }
@@ -35,7 +36,6 @@ class ProductosActivity : AppCompatActivity() {
     private fun cargarListaMedicamentos() {
         listaMedicamentos = findViewById<ListView>(R.id.ListaMedicamentos)
         medicamentos = ArrayList<Producto>()
-        listaCarrito = ArrayList<Carrito>()
 
         // Cambiarlo refProductos a consultaOrdenada para ordenar lista
         consultaOrdenada.addValueEventListener(object : ValueEventListener {
@@ -59,7 +59,6 @@ class ProductosActivity : AppCompatActivity() {
         })
     }
     companion object {
-        var listaCarrito : MutableList<Carrito>? = null
         var database: FirebaseDatabase = FirebaseDatabase.getInstance()
         var refMedicamentos: DatabaseReference = database.getReference("medicamentos")
         var refCarrito: DatabaseReference = database.getReference("carrito")
