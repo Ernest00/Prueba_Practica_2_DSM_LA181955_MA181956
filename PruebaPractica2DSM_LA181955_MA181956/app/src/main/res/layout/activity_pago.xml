@@ -75,9 +75,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/vencimiento_tarjeta_pago"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"/>
+        android:text="@string/vencimiento_tarjeta_pago"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/txtVencimientoTarjetaPago"
