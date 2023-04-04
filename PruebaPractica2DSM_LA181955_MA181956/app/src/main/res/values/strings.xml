@@ -4,4 +4,14 @@
     <string name="compra_string">Make a purchase</string>
     <string name="historial_string">Shopping history</string>
     <string name="logout">Logout</string>
+    <string name="titulo_pago">Payment form</string>
+    <string name="nombre_pago">Complete name:</string>
+    <string name="correo_pago">Email:</string>
+    <string name="telefono_pago">Telephone:</string>
+    <string name="tarjeta_pago">Card number:</string>
+    <string name="vencimiento_tarjeta_pago">Expiration:</string>
+    <string name="cvv_pago">CVV:</string>
+    <string name="direccion_pago">Address:</string>
+    <string name="hint_vencimiento_tarjeta">mm/yyyy</string>
+    <string name="btn_pago">Pay</string>
 </resources>
