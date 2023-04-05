@@ -19,4 +19,27 @@
     <string name="lista_compra">My Order</string>
     <string name="historial">Shopping history</string>
     <string name="btn_volver">Go to home</string>
+    <string name="total_a_pagar">Total to pay</string>
+    <string name="cerrarSesion">Closed session</string>
+    <string name="producto_nombre">Name</string>
+    <string name="producto_precio">Price</string>
+    <string name="producto_indicaciones">Indications</string>
+    <string name="producto_contraindicaciones">Contra-indications</string>
+    <string name="compra_exitosa">Your purchase has been made successfully</string>
+    <string name="error_nombre">Enter your full name</string>
+    <string name="error_tarjeta">Enter your credit card number.</string>
+    <string name="error_fechaTarjeta">Enter the expiration date of your card.</string>
+    <string name="error_digitarFecha">Enter the month and year of expiration, in the format (mm/yyyy).</string>
+    <string name="error_cvv">Enter the CVV of your card.</string>
+    <string name="error_digitarCvv">The CVV number is made up of a 3-digit number</string>
+    <string name="error_direccion">Enter the address of your residence.</string>
+    <string name="error_login">Enter your credentials, please</string>
+    <string name="fecha_string">Date</string>
+    <string name="tarjeta_string">Card No. Used</string>
+    <string name="producto_cantidad">Quantity</string>
+    <string name="error_carrito">You have no selected product</string>
+    <string name="correo_electronico">Email</string>
+    <string name="password">Password</string>
+    <string name="carrito_string">View shopping cart</string>
+    <string name="error_num_tarjeta">Enter a valid card number</string>
 </resources>

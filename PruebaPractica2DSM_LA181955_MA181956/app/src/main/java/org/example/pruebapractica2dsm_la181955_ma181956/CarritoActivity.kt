@@ -6,10 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.ListView
-import android.widget.TextView
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Carrito
@@ -28,16 +27,56 @@ class CarritoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
+
         cargarListaCarrito()
 
         btnPasoPago = findViewById<Button>(R.id.btnPasoPago)
         btnPasoPago.setOnClickListener {
-            val intent = Intent(this, PagoActivity::class.java)
-            intent.putExtra("totalVenta", totalVenta.toString())
-            finish()
-            startActivity(intent)
+            Log.d(TAG, totalVenta.toString())
+            if(totalVenta>0){
+                val intent = Intent(this, PagoActivity::class.java)
+                intent.putExtra("totalVenta", totalVenta.toString())
+                finish()
+                startActivity(intent)
+            }else{
+                Toast.makeText(this, resources.getString(R.string.error_carrito), Toast.LENGTH_SHORT).show()
+            }
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_sign_out -> {
+                FirebaseAuth.getInstance().signOut().also {
+                    Toast.makeText(this, resources.getString(R.string.cerrarSesion), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+            R.id.action_productos -> {
+                val intent = Intent(this, ProductosActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_carrito -> {
+                val intent = Intent(this, CarritoActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_history -> {
+                val intent = Intent(this, HistorialActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun calcularTotalVenta(listaCompra: ArrayList<Ordenes>) : Float {
@@ -103,7 +142,7 @@ class CarritoActivity : AppCompatActivity() {
                 totalVenta = calcularTotalVenta(ordenes as ArrayList<Ordenes>)
                 totalVenta = (totalVenta * 1.13).toFloat()
                 tvTotalVenta = findViewById<TextView>(R.id.tvTotalVenta)
-                tvTotalVenta.setText("Total a pagar: $${totalVenta.toString()}")
+                tvTotalVenta.setText("${resources.getString(R.string.total_a_pagar)}: $${totalVenta.toString()}")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -119,10 +158,8 @@ class CarritoActivity : AppCompatActivity() {
     companion object {
         var database: FirebaseDatabase = FirebaseDatabase.getInstance()
         var refCarrito: DatabaseReference = database.getReference().child("carrito")
-        var refMedicamentos: DatabaseReference = database.getReference().child("medicamentos")
 
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid.toString()
-        var refOrdenes = refCarrito.child(uid)
     }
 }

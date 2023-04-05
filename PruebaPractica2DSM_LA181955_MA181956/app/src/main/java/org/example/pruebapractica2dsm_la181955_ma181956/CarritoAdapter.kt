@@ -32,10 +32,10 @@ class CarritoAdapter(private val context: Activity, var ordenes: List<Ordenes>) 
         val tvNombre = rowview!!.findViewById<TextView>(R.id.tvNombre)
         val tvPrecio = rowview.findViewById<TextView>(R.id.tvPrecio)
         val tvCantidad = rowview.findViewById<TextView>(R.id.tvCantidad)
-        tvNombre.text = "Nombre: " + ordenes[position].medicamento
+        tvNombre.text = "${context.getString(R.string.producto_nombre)}: " + ordenes[position].medicamento
 
-        tvPrecio.text = "Precio: $" + ordenes[position].precio
-        tvCantidad.text = "Cantidad: " + ordenes[position].cantidad
+        tvPrecio.text = "${context.getString(R.string.producto_precio)}: $" + ordenes[position].precio
+        tvCantidad.text = "${context.getString(R.string.producto_cantidad)}: " + ordenes[position].cantidad
         return rowview
     }
 }

@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
             } else {
-                Toast.makeText(this, "Ingrese sus credenciales, por favor", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, resources.getString(R.string.error_login), Toast.LENGTH_LONG).show()
             }
         }
 

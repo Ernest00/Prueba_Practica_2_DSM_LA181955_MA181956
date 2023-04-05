@@ -20,4 +20,27 @@
     <string name="lista_compra">Orden de compra</string>
     <string name="historial">Historial de compras</string>
     <string name="btn_volver">Volver al inicio</string>
+    <string name="total_a_pagar">Total a pagar</string>
+    <string name="cerrarSesion">Sesión cerrada</string>
+    <string name="producto_nombre">Nombre</string>
+    <string name="producto_precio">Precio</string>
+    <string name="producto_indicaciones">Indicaciones</string>
+    <string name="producto_contraindicaciones">Contra-indicaciones</string>
+    <string name="compra_exitosa">Su compra ha sido realizada exitosamente</string>
+    <string name="error_nombre">Ingrese su nombre completo</string>
+    <string name="error_tarjeta">Ingrese su número de tarjeta de crédito.</string>
+    <string name="error_fechaTarjeta">Ingrese la fecha de vencimiento de su tarjeta.</string>
+    <string name="error_digitarFecha">Digite el mes y año de vencimiento, con el formato (mm/yyyy).</string>
+    <string name="error_cvv">Ingrese el CVV de su tarjeta.</string>
+    <string name="error_digitarCvv">El número de CVV se compone por un número de 3 dígitos</string>
+    <string name="error_direccion">Ingrese la dirección de su residencia.</string>
+    <string name="error_login">Ingrese sus credenciales, por favor</string>
+    <string name="fecha_string">Fecha</string>
+    <string name="tarjeta_string">N° Tarjeta usada</string>
+    <string name="producto_cantidad">Cantidad</string>
+    <string name="error_carrito">No tiene ningún producto seleccionado</string>
+    <string name="correo_electronico">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="carrito_string">Ver carrito</string>
+    <string name="error_num_tarjeta">Ingrese un número de tarjeta válido</string>
 </resources>

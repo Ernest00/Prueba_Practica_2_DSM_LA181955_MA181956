@@ -36,20 +36,20 @@ class ProductoAdapter(private val context: Activity, var productos: List<Product
         val btnAnadir = rowview.findViewById<Button>(R.id.btnAnadir)
         val tvCantidad = rowview.findViewById<EditText>(R.id.txtCantidad)
 
-        tvNombre.text = "Nombre: " + productos[position].nombre
-        tvPrecio.text = "Precio: $" + productos[position].precio.toString()
-        tvIndicaciones.text = "Indicaciones: " + productos[position].indicaciones
-        tvContraIndicaciones.text = "Contra-indicaciones: " + productos[position].contraindicaciones
+        tvNombre.text = "${context.getString(R.string.producto_nombre)}: " + productos[position].nombre
+        tvPrecio.text = "${context.getString(R.string.producto_precio)}: $" + productos[position].precio.toString()
+        tvIndicaciones.text = "${context.getString(R.string.producto_indicaciones)}: " + productos[position].indicaciones
+        tvContraIndicaciones.text = "${context.getString(R.string.producto_contraindicaciones)}: " + productos[position].contraindicaciones
         Picasso.get().load(productos[position].imagen).into(ivImagen)
 
         btnAnadir.setOnClickListener {
             if (tvCantidad.text.toString().isEmpty()) {
-                tvCantidad.setError("Ingrese la cantidad a comprar")
+                tvCantidad.setError("${context.getString(R.string.cerrarSesion)}")
             } else {
                 var cantidad: Int = tvCantidad.text.toString().toInt()
                 var uid: String = ProductosActivity.uid
-                var medicamento : String = tvNombre.text.toString().replace("Nombre: ", "")
-                var precio: Float = tvPrecio.text.toString().replace("Precio: $", "" ).toFloat()
+                var medicamento : String = tvNombre.text.toString().replace("${context.getString(R.string.producto_nombre)}: ", "")
+                var precio: Float = tvPrecio.text.toString().replace("${context.getString(R.string.producto_precio)}: $", "" ).toFloat()
                 var compra = Carrito(uid, medicamento, cantidad, precio)
                 tvCantidad.setText("")
                 ProductosActivity.refCarrito.child(compra.uid).child(compra.medicamento).setValue("${compra.cantidad}|${compra.precio}")
