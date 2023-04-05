@@ -42,4 +42,5 @@
     <string name="correo_electronico">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="carrito_string">Ver carrito</string>
+    <string name="error_num_tarjeta">Ingrese un número de tarjeta válido</string>
 </resources>

@@ -41,4 +41,5 @@
     <string name="correo_electronico">Email</string>
     <string name="password">Password</string>
     <string name="carrito_string">View shopping cart</string>
+    <string name="error_num_tarjeta">Enter a valid card number</string>
 </resources>

@@ -83,6 +83,11 @@ class PagoActivity : AppCompatActivity() {
         return "$fechaActual - $horaActual"
     }
 
+    fun validarNumeroTarjeta(tarjeta: String) : Boolean {
+        val patron = Regex("^[0-9]{15,16}|(([0-9]{4}\\s){3}[0-9]{3,4})$")
+        return patron.matches(tarjeta)
+    }
+
     fun validarCvv(cadena: String): Boolean {
         val patron = Regex("^[0-9]{3}$")
         return patron.matches(cadena)
@@ -158,6 +163,9 @@ class PagoActivity : AppCompatActivity() {
 
             if (txtTarjeta.text.toString().isEmpty()) {
                 txtTarjeta.setError(resources.getString(R.string.error_tarjeta))
+                errores += 1
+            } else if (!validarNumeroTarjeta(txtTarjeta.text.toString())) {
+                txtTarjeta.setError(resources.getString(R.string.error_num_tarjeta))
                 errores += 1
             }
 
