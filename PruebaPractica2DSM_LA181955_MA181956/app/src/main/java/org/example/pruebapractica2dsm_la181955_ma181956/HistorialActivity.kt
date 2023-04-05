@@ -10,7 +10,6 @@ import android.widget.ListView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import org.example.pruebapractica2dsm_la181955_ma181956.datos.Producto
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Venta
 
 class HistorialActivity : AppCompatActivity() {

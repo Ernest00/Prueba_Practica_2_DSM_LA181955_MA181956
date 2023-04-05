@@ -2,8 +2,6 @@ package org.example.pruebapractica2dsm_la181955_ma181956
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
@@ -14,10 +12,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.example.pruebapractica2dsm_la181955_ma181956.ProductosActivity.Companion.database
-import org.example.pruebapractica2dsm_la181955_ma181956.datos.Carrito
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Ordenes
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Venta
-import org.w3c.dom.Text
 import java.util.*
 import kotlin.collections.ArrayList
 

@@ -4,16 +4,13 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import org.example.pruebapractica2dsm_la181955_ma181956.datos.Carrito
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Ordenes
-import org.example.pruebapractica2dsm_la181955_ma181956.datos.Producto
 
 class CarritoActivity : AppCompatActivity() {
     val user = FirebaseAuth.getInstance().currentUser

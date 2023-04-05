@@ -1,6 +1,5 @@
 package org.example.pruebapractica2dsm_la181955_ma181956
 
-import android.app.DownloadManager.Query
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
