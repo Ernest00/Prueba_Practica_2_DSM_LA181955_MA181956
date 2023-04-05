@@ -23,8 +23,8 @@ class HistorialAdapter(private val context: Activity, var ventas: List<Venta>):
         val tvTarjeta = rowview.findViewById<TextView>(R.id.tvTarjetaVenta)
         val tvTotal = rowview.findViewById<TextView>(R.id.tvTotalVenta)
 
-        tvFecha.text = "Fecha: " + ventas[position].fecha
-        tvTarjeta.text = "N° tarjeta usada: " + ventas[position].tarjeta
+        tvFecha.text = "${context.getString(R.string.fecha_string)}: " + ventas[position].fecha
+        tvTarjeta.text = "${context.getString(R.string.tarjeta_string)}: " + ventas[position].tarjeta
         tvTotal.text = "Total: $" + ventas[position].total.toString()
 
         return rowview

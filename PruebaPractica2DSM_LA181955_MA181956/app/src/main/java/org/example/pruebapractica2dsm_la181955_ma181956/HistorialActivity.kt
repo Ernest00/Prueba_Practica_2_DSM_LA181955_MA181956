@@ -3,8 +3,11 @@ package org.example.pruebapractica2dsm_la181955_ma181956
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.example.pruebapractica2dsm_la181955_ma181956.datos.Producto
@@ -26,6 +29,40 @@ class HistorialActivity : AppCompatActivity() {
             finish()
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_sign_out -> {
+                FirebaseAuth.getInstance().signOut().also {
+                    Toast.makeText(this, resources.getString(R.string.cerrarSesion), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+            R.id.action_productos -> {
+                val intent = Intent(this, ProductosActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_carrito -> {
+                val intent = Intent(this, CarritoActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.action_history -> {
+                val intent = Intent(this, HistorialActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun cargarHistorialCompras() {
