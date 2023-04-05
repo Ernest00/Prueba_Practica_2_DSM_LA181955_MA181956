@@ -30,4 +30,13 @@
         android:scrollbars="vertical"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_volver"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        />
 </LinearLayout>

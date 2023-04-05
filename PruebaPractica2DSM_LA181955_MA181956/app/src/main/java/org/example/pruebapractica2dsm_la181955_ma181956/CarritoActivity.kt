@@ -34,6 +34,7 @@ class CarritoActivity : AppCompatActivity() {
         btnPasoPago.setOnClickListener {
             val intent = Intent(this, PagoActivity::class.java)
             intent.putExtra("totalVenta", totalVenta.toString())
+            finish()
             startActivity(intent)
         }
 

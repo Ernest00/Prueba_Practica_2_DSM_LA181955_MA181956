@@ -18,4 +18,5 @@
     <string name="checkout">Go to payment</string>
     <string name="lista_compra">My Order</string>
     <string name="historial">Shopping history</string>
+    <string name="btn_volver">Go to home</string>
 </resources>

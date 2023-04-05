@@ -38,9 +38,9 @@ class PagoActivity : AppCompatActivity() {
 
     fun obtenerFechaHoraActual() : String {
         val calendar = Calendar.getInstance()
-        val fechaActual = "${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH) + 1}/${calendar.get(Calendar.YEAR)}"
-        val horaActual = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}:${calendar.get(Calendar.SECOND)}"
-        return "${fechaActual} - ${horaActual}"
+        val fechaActual = "${calendar.get(Calendar.DAY_OF_MONTH).toString().padStart(2,'0')}/${(calendar.get(Calendar.MONTH) + 1).toString().padStart(2,'0')}/${calendar.get(Calendar.YEAR)}"
+        val horaActual = "${calendar.get(Calendar.HOUR_OF_DAY).toString().padStart(2,'0')}:${calendar.get(Calendar.MINUTE).toString().padStart(2,'0')}:${calendar.get(Calendar.SECOND).toString().padStart(2,'0')}"
+        return "$fechaActual - $horaActual"
     }
 
     fun validarCvv(cadena: String) : Boolean {
@@ -173,6 +173,7 @@ class PagoActivity : AppCompatActivity() {
                 Toast.makeText(this, "Su compra ha sido realizada exitosamente", Toast.LENGTH_SHORT).show()
                 // Se muestra la actividad del historial de compras
                 val intent = Intent(this, HistorialActivity::class.java)
+                finish()
                 startActivity(intent)
             }
         }

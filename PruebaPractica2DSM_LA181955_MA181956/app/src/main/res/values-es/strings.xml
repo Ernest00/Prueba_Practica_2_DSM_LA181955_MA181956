@@ -19,4 +19,5 @@
     <string name="checkout">Pagar</string>
     <string name="lista_compra">Orden de compra</string>
     <string name="historial">Historial de compras</string>
+    <string name="btn_volver">Volver al inicio</string>
 </resources>
